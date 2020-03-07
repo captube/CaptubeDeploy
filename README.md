@@ -64,7 +64,7 @@ openjdk             8u181               82942d9df443        11 days ago         
 Run Docker Image
 
 ```bash
-$ docker run -d -p 4000:4000 --name captube_be captube_be:{version}
+$ docker run -d -p 4000:5000 -v ~/.aws/credentials:/home/app/.aws/credentials -e AWS_SHARED_CREDENTIALS_FILE=/home/app/.aws/credentials --name captube_be captube_be:v1.0.2
 ```
 
 Now you can see running FrontEnd and BackEnd
