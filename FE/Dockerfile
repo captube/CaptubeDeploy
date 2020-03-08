@@ -1,12 +1,15 @@
-FROM node:10.15.3
+FROM ubuntu:18.04
+RUN apt-get update -y
+RUN apt-get install -y nginx
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 
 RUN mkdir -p /app
 ADD . /app
-RUN cp /app/StartProd.js /app/CaptubeFE
+RUN cp /app/nginx.conf /etc/nginx/
 
 WORKDIR /app/CaptubeFE
 RUN npm install
 RUN npm run build
 
-RUN npm install express-logger
-ENTRYPOINT [ "node","StartProd.js", "ec2-54-180-90-135.ap-northeast-2.compute.amazonaws.com"]
+CMD ["nginx", "-g", "daemon off;"]
